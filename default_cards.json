@@ -1,0 +1,12 @@
+[
+    {
+        "command": "git clone",
+        "id": 1,
+        "hint": "Create a repository from a github link"
+    },
+    {
+        "command": "git pull",
+        "id": 2,
+        "hint": "Get latest updates in repository"
+    }
+]
