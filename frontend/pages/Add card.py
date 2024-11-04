@@ -24,7 +24,7 @@ def create_card(field1: str, field2: str):
         return False, f"Error creating card: {str(e)}", None
 
 
-st.header("Add New Card")
+st.header("Add new card to database")
 
 with st.form("add_card_form"):
     # Update these field names to match your Card model
