@@ -3,6 +3,12 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
+data = [
+    {"id": 1, "name": "Alice"},
+    {"id": 2, "name": "Bob"},
+    {"id": 3, "name": "Charlie"},
+]
+
 
 class Card(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
