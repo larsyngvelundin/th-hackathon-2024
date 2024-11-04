@@ -9,8 +9,8 @@ def create_card(field1: str, field2: str):
 
     # Create the card data structure matching your Card model
     card_data = {
-        "field1": field1,  # Replace field1 with your actual field name
-        "field2": field2,  # Replace field2 with your actual field name
+        "hint": field1,  # Replace field1 with your actual field name
+        "command": field2,  # Replace field2 with your actual field name
     }
 
     try:
@@ -28,8 +28,8 @@ st.header("Add New Card")
 
 with st.form("add_card_form"):
     # Update these field names to match your Card model
-    field1 = st.text_input("Field 1")  # Replace with your actual field name
-    field2 = st.text_input("Field 2")  # Replace with your actual field name
+    field1 = st.text_input("Hint")  # Replace with your actual field name
+    field2 = st.text_input("Command")  # Replace with your actual field name
 
     submit = st.form_submit_button("Create Card")
 
