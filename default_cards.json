@@ -295,12 +295,6 @@
         "category": "linux"
     },
     {
-        "command": "chown <user>:<group> <file>",
-        "id": 50,
-        "hint": "Change the owner and group of a file or directory",
-        "category": "linux"
-    },
-    {
         "command": "du -sh",
         "id": 51,
         "hint": "Show the total disk usage of a directory",
