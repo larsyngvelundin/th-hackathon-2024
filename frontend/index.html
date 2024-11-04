@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+    <style>
+        #currentCard {
+            width: 500px;
+            height: 300px;
+            background-color: antiquewhite;
+            box-shadow: 1px;
+        }
+
+        #cardHint {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="currentCard">
+        <div id="cardHint"></div>
+        <div id="cardAnswer"></div>
+    </div>
+    <label for="userInput">Answer:</label>
+    <input type="text" id="userInput" size="40" onen />
+    <div id="resultDiv"></div>
+    <script>
+        // Replace 'http://10.154.246.69:8000' with the actual endpoint you need to fetch from
+        const url = 'http://10.154.246.69:8000/cards';
+        let resultDiv = document.getElementById("resultDiv");
+        let allCards = [];
+        let currentIndex = 0;
+        let clearOnEnter = false;
+        function loadCard() {
+            cardEl = document.getElementById("currentCard");
+            hintEl = document.getElementById("cardHint");
+            answerEl = document.getElementById("cardAnswer");
+            currentCard = allCards[currentIndex];
+            currentIndex = currentIndex + 1;
+            console.log("current card:", currentCard);
+            hintEl.innerText = currentCard.hint;
+
+        }
+        inputField = document.getElementById("userInput");
+        inputField.addEventListener("keypress", function (event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+
+                event.preventDefault();
+                console.log(inputField.value);
+                if (inputField.value == currentCard.command) {
+                    resultDiv.innerHTML = "CORRECT!";
+                }
+                else {
+                    resultDiv.innerHTML = "THAT'S NOT CORRECT!";
+                }
+                if (clearOnEnter) {
+                    loadCard();
+                    clearOnEnter = false;
+                    resultDiv.innerHTML = "";
+                    inputField.value = "";
+                }
+                else {
+                    clearOnEnter = true;
+                }
+            }
+        });
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i >= 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        }
+        async function getCards() {
+            // Use the fetch API to get data from the server
+            allCards = await fetch(url)
+                .then(response => {
+                    // Check if the request was successful
+                    if (!response.ok) {
+                        // Handle the error if not successful
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    // Parse the response body as JSON if the request was successful
+                    return response.json();
+                })
+                .then(data => {
+                    // Now you have your data in the 'data' variable
+                    // console.log(data);
+
+                    // You can now work with your data or assign it to another variable
+                    const fetchedData = data;
+                    return fetchedData;
+                    // Do something with 'fetchedData'
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the fetch
+                    console.error('Fetch error:', error);
+                });
+        }
+        async function main() {
+            await getCards();
+            // console.log("allCards", allCards);
+            allCards = shuffleArray(allCards);
+            // console.log("allCards", allCards);
+            loadCard();
+        }
+        main();
+    </script>
+</body>
+
+</html>
