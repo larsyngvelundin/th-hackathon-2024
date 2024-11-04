@@ -2,11 +2,76 @@
     {
         "command": "git clone",
         "id": 1,
-        "hint": "Create a repository from a github link"
+        "hint": "Create a repository from a GitHub link"
     },
     {
         "command": "git pull",
         "id": 2,
-        "hint": "Get latest updates in repository"
+        "hint": "Get the latest updates from the repository"
+    },
+    {
+        "command": "git push",
+        "id": 3,
+        "hint": "Upload local changes to the remote repository"
+    },
+    {
+        "command": "git commit",
+        "id": 4,
+        "hint": "Save changes to the local repository with a message"
+    },
+    {
+        "command": "git add",
+        "id": 5,
+        "hint": "Stage changes for the next commit"
+    },
+    {
+        "command": "git status",
+        "id": 6,
+        "hint": "Check the status of files in the working directory"
+    },
+    {
+        "command": "git branch",
+        "id": 7,
+        "hint": "List, create, or delete branches"
+    },
+    {
+        "command": "git checkout",
+        "id": 8,
+        "hint": "Switch to a different branch or restore working tree files"
+    },
+    {
+        "command": "git merge",
+        "id": 9,
+        "hint": "Combine changes from different branches"
+    },
+    {
+        "command": "git log",
+        "id": 10,
+        "hint": "Show the commit history"
+    },
+    {
+        "command": "git diff",
+        "id": 11,
+        "hint": "Show changes between commits, commit and working tree, etc."
+    },
+    {
+        "command": "git remote",
+        "id": 12,
+        "hint": "Manage set of tracked repositories"
+    },
+    {
+        "command": "git stash",
+        "id": 13,
+        "hint": "Stash the changes in the working directory"
+    },
+    {
+        "command": "git rebase",
+        "id": 14,
+        "hint": "Reapply commits on top of another base tip"
+    },
+    {
+        "command": "git tag",
+        "id": 15,
+        "hint": "Create, list, delete or verify a tag object signed with GPG"
     }
 ]
