@@ -2,6 +2,7 @@ import json
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 default_data = json.load(open("default_cards.json", "r"))
@@ -35,6 +36,7 @@ SessionDep = Annotated[Session, Depends(get_session)]
 # SessionDep.refresh(default_data[0])
 
 app = FastAPI()
+app.add_middleware(CORSMiddleware, allow_origins=["*"])
 
 
 @app.on_event("startup")
