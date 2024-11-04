@@ -1,5 +1,6 @@
 Create frontend
 
+--Done above
 
 Function to get random card
 Page where you can add more cards
@@ -8,3 +9,6 @@ Page where you can add more cards
 Function to add a list of cards at once, bulk add
 Add funny landing page
 Add card animations
+stats
+    for how many cards have been practiced
+    how much time spent
