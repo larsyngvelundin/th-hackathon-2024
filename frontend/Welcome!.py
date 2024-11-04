@@ -29,7 +29,7 @@ def main():
     with intro_col1:
         st.markdown(
             """
-        <a href="http://localhost:8501/Practise" target="_self">
+        <a href="http://localhost:8501/Practice" target="_self">
             <button style="
                 background-color: #4CAF50;
                 color: white;
