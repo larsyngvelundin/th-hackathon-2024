@@ -2,76 +2,183 @@
     {
         "command": "git clone",
         "id": 1,
-        "hint": "Create a repository from a GitHub link"
+        "hint": "Create a repository from a GitHub link",
+        "category": "git"
     },
     {
         "command": "git pull",
         "id": 2,
-        "hint": "Get the latest updates from the repository"
+        "hint": "Get the latest updates from the repository",
+        "category": "git"
     },
     {
         "command": "git push",
         "id": 3,
-        "hint": "Upload local changes to the remote repository"
+        "hint": "Upload local changes to the remote repository",
+        "category": "git"
     },
     {
         "command": "git commit",
         "id": 4,
-        "hint": "Save changes to the local repository with a message"
+        "hint": "Save changes to the local repository with a message",
+        "category": "git"
     },
     {
         "command": "git add",
         "id": 5,
-        "hint": "Stage changes for the next commit"
+        "hint": "Stage changes for the next commit",
+        "category": "git"
     },
     {
         "command": "git status",
         "id": 6,
-        "hint": "Check the status of files in the working directory"
+        "hint": "Check the status of files in the working directory",
+        "category": "git"
     },
     {
         "command": "git branch",
         "id": 7,
-        "hint": "List, create, or delete branches"
+        "hint": "List, create, or delete branches",
+        "category": "git"
     },
     {
         "command": "git checkout",
         "id": 8,
-        "hint": "Switch to a different branch or restore working tree files"
+        "hint": "Switch to a different branch or restore working tree files",
+        "category": "git"
     },
     {
         "command": "git merge",
         "id": 9,
-        "hint": "Combine changes from different branches"
+        "hint": "Combine changes from different branches",
+        "category": "git"
     },
     {
         "command": "git log",
         "id": 10,
-        "hint": "Show the commit history"
+        "hint": "Show the commit history",
+        "category": "git"
     },
     {
         "command": "git diff",
         "id": 11,
-        "hint": "Show changes between commits, commit and working tree, etc."
+        "hint": "Show changes between commits, commit and working tree, etc.",
+        "category": "git"
     },
     {
         "command": "git remote",
         "id": 12,
-        "hint": "Manage set of tracked repositories"
+        "hint": "Manage set of tracked repositories",
+        "category": "git"
     },
     {
         "command": "git stash",
         "id": 13,
-        "hint": "Stash the changes in the working directory"
+        "hint": "Stash the changes in the working directory",
+        "category": "git"
     },
     {
         "command": "git rebase",
         "id": 14,
-        "hint": "Reapply commits on top of another base tip"
+        "hint": "Reapply commits on top of another base tip",
+        "category": "git"
     },
     {
         "command": "git tag",
         "id": 15,
-        "hint": "Create, list, delete or verify a tag object signed with GPG"
+        "hint": "Create, list, delete or verify a tag object signed with GPG",
+        "category": "git"
+    },
+    
+    {
+        "command": "pip install <package>",
+        "id": 1,
+        "hint": "Install a package from the Python Package Index (PyPI)",
+        "category": "pip"
+    },
+    {
+        "command": "pip uninstall <package>",
+        "id": 2,
+        "hint": "Remove a package installed with pip",
+        "category": "pip"
+    },
+    {
+        "command": "pip freeze",
+        "id": 3,
+        "hint": "List installed packages and their versions",
+        "category": "pip"
+    },
+    {
+        "command": "pip show <package>",
+        "id": 4,
+        "hint": "Display information about a specific installed package",
+        "category": "pip"
+    },
+    {
+        "command": "pip list",
+        "id": 5,
+        "hint": "List installed packages in the current environment",
+        "category": "pip"
+    },
+    {
+        "command": "pip install -r requirements.txt",
+        "id": 6,
+        "hint": "Install all packages listed in a requirements file",
+        "category": "pip"
+    },
+    {
+        "command": "pip search <query>",
+        "id": 7,
+        "hint": "Search PyPI for packages matching the query",
+        "category": "pip"
+    },
+    {
+        "command": "pip check",
+        "id": 8,
+        "hint": "Check for broken requirements",
+        "category": "pip"
+    },
+    {
+        "command": "pip cache list",
+        "id": 9,
+        "hint": "List cached packages",
+        "category": "pip"
+    },
+    {
+        "command": "pip install --upgrade <package>",
+        "id": 10,
+        "hint": "Upgrade a package to the latest version",
+        "category": "pip"
+    },
+    {
+        "command": "pip config list",
+        "id": 11,
+        "hint": "List all pip configuration settings",
+        "category": "pip"
+    },
+    {
+        "command": "pip wheel <package>",
+        "id": 12,
+        "hint": "Build a wheel package from a source package",
+        "category": "pip"
+    },
+    {
+        "command": "pip install --user <package>",
+        "id": 13,
+        "hint": "Install a package for the current user only",
+        "category": "pip"
+    },
+    {
+        "command": "pip install <package> --no-deps",
+        "id": 14,
+        "hint": "Install a package without installing its dependencies",
+        "category": "pip"
+    },
+    {
+        "command": "pip install --upgrade pip",
+        "id": 15,
+        "hint": "Upgrade pip to the latest version",
+        "category": "pip"
     }
+        
 ]
