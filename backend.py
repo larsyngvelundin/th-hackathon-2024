@@ -1,19 +1,16 @@
+import json
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
-data = [
-    {"id": 1, "name": "Alice"},
-    {"id": 2, "name": "Bob"},
-    {"id": 3, "name": "Charlie"},
-]
+default_data = json.load(open("default_cards.json", "r"))
 
 
 class Card(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     hint: str = Field(index=True)
-    command: str | None = Field(index=True)
+    command: str | None = Field(index=True, unique=True)
 
 
 sqlite_file_name = "database.db"
@@ -33,6 +30,9 @@ def get_session():
 
 
 SessionDep = Annotated[Session, Depends(get_session)]
+# SessionDep.add(default_data[0])
+# SessionDep.commit()
+# SessionDep.refresh(default_data[0])
 
 app = FastAPI()
 
@@ -40,6 +40,14 @@ app = FastAPI()
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
+    with Session(engine) as session:
+        # Check if data already exists to avoid duplicates
+        result = session.exec(select(Card)).first()
+        if not result:  # If there's no data in the table, insert default data
+            for card_data in default_data:
+                card = Card(**card_data)
+                session.add(card)
+            session.commit()
 
 
 @app.post("/cards/")
