@@ -1,0 +1,10 @@
+Create frontend
+
+
+Function to get random card
+Page where you can add more cards
+
+"priority" method, where if user answers wrong, the card is up in the queue, and if correct card is placed at end of queue
+Function to add a list of cards at once, bulk add
+Add funny landing page
+Add card animations
