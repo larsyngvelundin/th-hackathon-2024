@@ -45,5 +45,5 @@ if cards:
     if len(user_input) > 0:
         st.write("guessreceived")
     st.write(dir(current_card))
-    st.rerun()
-    st.experimental_rerun()
+
+    # st.experimental_rerun()
