@@ -19,15 +19,17 @@ def fetch_cards():
 def main():
     st.title("Welcome to the Practice session!")
     st.text("")
+    st.divider()
     st.text(
         "Here you can practice (almoast) all the stuff you need to know about programing!"
     )
+    st.header("")
 
     intro_col1, intro_col2, intro_col3 = st.columns(3)
     with intro_col1:
         st.markdown(
             """
-        <a href="http://localhost:8501/Add_card" target="_self">
+        <a href="http://localhost:8501/Practise" target="_self">
             <button style="
                 background-color: #4CAF50;
                 color: white;
@@ -39,7 +41,7 @@ def main():
                 text-decoration: none;
                 display: inline-block;
                 font-size: 16px;">
-                Go to Add Card
+                Go to Practise
             </button>
         </a>
     """,
@@ -48,7 +50,7 @@ def main():
     with intro_col2:
         st.markdown(
             """
-        <a href="http://localhost:8501/Practice" target="_self">
+        <a href="http://localhost:8501/Add_card" target="_self">
             <button style="
                 background-color: #4CAF50;
                 color: white;
@@ -81,16 +83,17 @@ def main():
                 text-decoration: none;
                 display: inline-block;
                 font-size: 16px;">
-                Go to Add Card
+                Go to Remove Card
             </button>
         </a>
     """,
             unsafe_allow_html=True,
         )
-
     st.title("")
-    st.text("If you want to see all the data in the database, press the button below.")
+    st.divider()
 
+    st.text("If you want to see all the data in the database, press the button below.")
+    st.text("")
     # Fetch data button
     if st.button("The BIG reveile"):
         with st.spinner("Fetching cards..."):
