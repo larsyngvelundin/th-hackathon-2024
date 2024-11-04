@@ -71,7 +71,7 @@ def main():
     with intro_col3:
         st.markdown(
             """
-        <a href="http://localhost:8501/Remove card" target="_self">
+        <a href="http://localhost:8501/Remove_card" target="_self">
             <button style="
                 background-color: #4CAF50;
                 color: white;
