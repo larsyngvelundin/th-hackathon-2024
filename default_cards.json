@@ -269,6 +269,126 @@
         "id": 45,
         "hint": "Check for broken packages in the active virtual environment",
         "category": "virtualenv"
+    },
+    {
+        "command": "cd <directory>",
+        "id": 46,
+        "hint": "Change directory to the specified path",
+        "category": "linux"
+    },
+    {
+        "command": "ls",
+        "id": 47,
+        "hint": "List files and directories in the current directory",
+        "category": "linux"
+    },
+    {
+        "command": "mkdir <directory>",
+        "id": 48,
+        "hint": "Create a new directory with the specified name",
+        "category": "linux"
+    },
+    {
+        "command": "rm <file>",
+        "id": 49,
+        "hint": "Remove the specified file",
+        "category": "linux"
+    },
+    {
+        "command": "rm -r <directory>",
+        "id": 50,
+        "hint": "Remove a directory and its contents recursively",
+        "category": "linux"
+    },
+    {
+        "command": "cp <source> <destination>",
+        "id": 51,
+        "hint": "Copy a file or directory to a new location",
+        "category": "linux"
+    },
+    {
+        "command": "mv <source> <destination>",
+        "id": 52,
+        "hint": "Move or rename a file or directory",
+        "category": "linux"
+    },
+    {
+        "command": "touch <file>",
+        "id": 53,
+        "hint": "Create an empty file or update the timestamp of an existing file",
+        "category": "linux"
+    },
+    {
+        "command": "cat <file>",
+        "id": 54,
+        "hint": "Display the contents of a file",
+        "category": "linux"
+    },
+    {
+        "command": "echo <text>",
+        "id": 55,
+        "hint": "Print text to the terminal or write it to a file",
+        "category": "linux"
+    },
+    {
+        "command": "pwd",
+        "id": 56,
+        "hint": "Print the current working directory",
+        "category": "linux"
+    },
+    {
+        "command": "chmod <permissions> <file>",
+        "id": 57,
+        "hint": "Change the permissions of a file or directory",
+        "category": "linux"
+    },
+    {
+        "command": "chown <user>:<group> <file>",
+        "id": 58,
+        "hint": "Change the owner and group of a file or directory",
+        "category": "linux"
+    },
+    {
+        "command": "find <directory> -name <pattern>",
+        "id": 59,
+        "hint": "Search for files and directories matching a pattern",
+        "category": "linux"
+    },
+    {
+        "command": "grep <pattern> <file>",
+        "id": 60,
+        "hint": "Search for a pattern within a file",
+        "category": "linux"
+    },
+    {
+        "command": "df -h",
+        "id": 61,
+        "hint": "Display disk space usage in a human-readable format",
+        "category": "linux"
+    },
+    {
+        "command": "du -sh <directory>",
+        "id": 62,
+        "hint": "Show the total disk usage of a directory",
+        "category": "linux"
+    },
+    {
+        "command": "ps aux",
+        "id": 63,
+        "hint": "List all running processes with detailed information",
+        "category": "linux"
+    },
+    {
+        "command": "kill <pid>",
+        "id": 64,
+        "hint": "Terminate a process by its process ID (PID)",
+        "category": "linux"
+    },
+    {
+        "command": "top",
+        "id": 65,
+        "hint": "Display real-time system resource usage and running processes",
+        "category": "linux"
     }
        
 ]
