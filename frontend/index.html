@@ -83,6 +83,7 @@
         }
     </style>
     <div id="containerDiv">
+        <div id="statsDiv"></div>
         <div id="currentCard" class="card">
             <div id="cardHint" class="cardSide"></div>
             <div id="cardAnswer" class="cardSide"></div>
@@ -102,17 +103,23 @@
             return new RegExp(regexString, "gi");
         }
         const url = 'http://10.154.246.69:8000/cards';
+        let totalCount = 0;
+        let correctCount = 0;
 
         let resultDiv = document.getElementById("resultDiv");
         let allCards = [];
         let currentIndex = 0;
         let clearOnEnter = false;
         cardEl = document.getElementById("currentCard");
+        statsDiv = document.getElementById("statsDiv");
         hintEl = document.getElementById("cardHint");
         answerEl = document.getElementById("cardAnswer");
         function loadCard() {
             currentCard = allCards[currentIndex];
             currentIndex = currentIndex + 1;
+            if (currentIndex >= allCards.length) {
+                currentIndex = 0;
+            }
             console.log("current card:", currentCard);
             hintEl.innerText = currentCard.hint;
             answerEl.innerText = currentCard.command;
@@ -134,6 +141,7 @@
             resultDiv.innerHTML = "";
             inputField.value = "";
         }
+        let currentCorrect = false;
         inputField.addEventListener("keypress", function (event) {
             // If the user presses the "Enter" key on the keyboard
             if (event.key === "Enter") {
@@ -143,19 +151,30 @@
                 console.log(inputField.value);
                 let regex = stringToRegex(currentCard.command);
                 let count = countMatches(inputField.value, regex)
+
                 if (count > 0) {
                     resultDiv.innerHTML = "CORRECT!";
+                    // if (clearOnEnter) {
+
+                    currentCorrect = true;
+                    // }
                 }
                 else {
                     resultDiv.innerHTML = "THAT'S NOT CORRECT!";
                     answerEl.classList.add("incorrect");
+                    currentCorrect = false;
                 }
                 if (clearOnEnter) {
                     resetCard();
                 }
                 else {
                     flipCard();
+                    if (currentCorrect) {
+                        correctCount = correctCount + 1;
+                    }
+                    totalCount = totalCount + 1;
                     clearOnEnter = true;
+                    statsDiv.innerHTML = `${correctCount} correct<br>${totalCount} total`;
                 }
             }
         });

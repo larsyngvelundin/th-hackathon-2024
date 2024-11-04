@@ -6,7 +6,7 @@ from streamlit.components.v1 import html
 
 
 pageHtml = """
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
@@ -81,6 +81,7 @@ pageHtml = """
         }
     </style>
     <div id="containerDiv">
+        <div id="statsDiv"></div>
         <div id="currentCard" class="card">
             <div id="cardHint" class="cardSide"></div>
             <div id="cardAnswer" class="cardSide"></div>
@@ -93,24 +94,30 @@ pageHtml = """
         function countMatches(str, re) {
             return ((str || '').match(re) || []).length
         }
-        function stringToRegex(str) {
+          function stringToRegex(str) {
             // str = stripLinkStuff(str);
             const digitsPattern = /\\<\\S+\\>/g;
             const regexString = str.replace(digitsPattern, '\\\S+');
             return new RegExp(regexString, "gi");
         }
         const url = 'http://10.154.246.69:8000/cards';
+        let totalCount = 0;
+        let correctCount = 0;
 
         let resultDiv = document.getElementById("resultDiv");
         let allCards = [];
         let currentIndex = 0;
         let clearOnEnter = false;
         cardEl = document.getElementById("currentCard");
+        statsDiv = document.getElementById("statsDiv");
         hintEl = document.getElementById("cardHint");
         answerEl = document.getElementById("cardAnswer");
         function loadCard() {
             currentCard = allCards[currentIndex];
             currentIndex = currentIndex + 1;
+            if (currentIndex >= allCards.length) {
+                currentIndex = 0;
+            }
             console.log("current card:", currentCard);
             hintEl.innerText = currentCard.hint;
             answerEl.innerText = currentCard.command;
@@ -132,6 +139,7 @@ pageHtml = """
             resultDiv.innerHTML = "";
             inputField.value = "";
         }
+        let currentCorrect = false;
         inputField.addEventListener("keypress", function (event) {
             // If the user presses the "Enter" key on the keyboard
             if (event.key === "Enter") {
@@ -141,23 +149,30 @@ pageHtml = """
                 console.log(inputField.value);
                 let regex = stringToRegex(currentCard.command);
                 let count = countMatches(inputField.value, regex)
-                console.log("count", count);
-                console.log("regex", regex);
-                console.log("inputField.value", inputField.value);
-                
+
                 if (count > 0) {
                     resultDiv.innerHTML = "CORRECT!";
+                    // if (clearOnEnter) {
+
+                    currentCorrect = true;
+                    // }
                 }
                 else {
                     resultDiv.innerHTML = "THAT'S NOT CORRECT!";
                     answerEl.classList.add("incorrect");
+                    currentCorrect = false;
                 }
                 if (clearOnEnter) {
                     resetCard();
                 }
                 else {
                     flipCard();
+                    if (currentCorrect) {
+                        correctCount = correctCount + 1;
+                    }
+                    totalCount = totalCount + 1;
                     clearOnEnter = true;
+                    statsDiv.innerHTML = `${correctCount} correct<br>${totalCount} total`;
                 }
             }
         });
