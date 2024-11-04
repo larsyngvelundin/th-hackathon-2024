@@ -6,14 +6,13 @@ from streamlit.components.v1 import html
 
 
 pageHtml = """
-    <style>
+     <style>
         body {
             width: 100vw;
             height: 100vh;
         }
 
         #containerDiv {
-
             position: relative;
             top: 50%;
             left: 50vw;
@@ -22,7 +21,6 @@ pageHtml = """
         }
 
         #currentCard {
-
             perspective: 1000px;
             width: 500px;
             height: 300px;
@@ -56,6 +54,7 @@ pageHtml = """
             background-color: #96ceb4;
             transform: rotateY(180deg);
         }
+
         #cardAnswer.incorrect {
             background-color: #ff6969;
         }
@@ -82,7 +81,15 @@ pageHtml = """
         <div id="resultDiv"></div>
     </div>
     <script>
-        // Replace 'http://10.154.246.69:8000' with the actual endpoint you need to fetch from
+        function countMatches(str, re) {
+            return ((str || '').match(re) || []).length
+        }
+        function stringToRegex(str) {
+            // str = stripLinkStuff(str);
+            const digitsPattern = /\\<\\S+\\>/g;
+            const regexString = str.replace(digitsPattern, '\\\S+');
+            return new RegExp(regexString, "gi");
+        }
         const url = 'http://10.154.246.69:8000/cards';
 
         let resultDiv = document.getElementById("resultDiv");
@@ -123,7 +130,13 @@ pageHtml = """
 
                 event.preventDefault();
                 console.log(inputField.value);
-                if (inputField.value == currentCard.command) {
+                let regex = stringToRegex(currentCard.command);
+                let count = countMatches(inputField.value, regex)
+                console.log("count", count);
+                console.log("regex", regex);
+                console.log("inputField.value", inputField.value);
+                
+                if (count > 0) {
                     resultDiv.innerHTML = "CORRECT!";
                 }
                 else {
