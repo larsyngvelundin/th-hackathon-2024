@@ -145,7 +145,7 @@ pageHtml = """
         }
         async function getCards() {
             // Use the fetch API to get data from the server
-            allCards = await fetch(url)
+            allCards = await fetch(url, { mode: 'no-cors'})
                 .then(response => {
                     // Check if the request was successful
                     if (!response.ok) {
