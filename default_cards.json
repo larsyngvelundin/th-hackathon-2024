@@ -179,6 +179,96 @@
         "id": 15,
         "hint": "Upgrade pip to the latest version",
         "category": "pip"
+    },
+    {
+        "command": "python -m venv <env_name>",
+        "id": 1,
+        "hint": "Create a new virtual environment with the specified name",
+        "category": "virtualenv"
+    },
+    {
+        "command": "source <env_name>/bin/activate",
+        "id": 2,
+        "hint": "Activate the virtual environment (Linux/Mac)",
+        "category": "virtualenv"
+    },
+    {
+        "command": "<env_name>\\Scripts\\activate",
+        "id": 3,
+        "hint": "Activate the virtual environment (Windows)",
+        "category": "virtualenv"
+    },
+    {
+        "command": "deactivate",
+        "id": 4,
+        "hint": "Deactivate the currently active virtual environment",
+        "category": "virtualenv"
+    },
+    {
+        "command": "pip install <package>",
+        "id": 5,
+        "hint": "Install a package in the active virtual environment",
+        "category": "virtualenv"
+    },
+    {
+        "command": "pip freeze > requirements.txt",
+        "id": 6,
+        "hint": "Save installed packages in the active virtual environment to a requirements file",
+        "category": "virtualenv"
+    },
+    {
+        "command": "pip install -r requirements.txt",
+        "id": 7,
+        "hint": "Install all packages listed in the requirements file in the active virtual environment",
+        "category": "virtualenv"
+    },
+    {
+        "command": "python -m venv --help",
+        "id": 8,
+        "hint": "Display help information for the venv module",
+        "category": "virtualenv"
+    },
+    {
+        "command": "rm -rf <env_name>",
+        "id": 9,
+        "hint": "Remove the specified virtual environment (Linux/Mac)",
+        "category": "virtualenv"
+    },
+    {
+        "command": "rmdir /S /Q <env_name>",
+        "id": 10,
+        "hint": "Remove the specified virtual environment (Windows)",
+        "category": "virtualenv"
+    },
+    {
+        "command": "python -m pip install --upgrade pip",
+        "id": 11,
+        "hint": "Upgrade pip to the latest version in the active virtual environment",
+        "category": "virtualenv"
+    },
+    {
+        "command": "pip list",
+        "id": 12,
+        "hint": "List all installed packages in the active virtual environment",
+        "category": "virtualenv"
+    },
+    {
+        "command": "pip show <package>",
+        "id": 13,
+        "hint": "Show details about a specific installed package in the active virtual environment",
+        "category": "virtualenv"
+    },
+    {
+        "command": "python -m venv <new_env_name> --copies",
+        "id": 14,
+        "hint": "Create a new virtual environment with copies of the Python binaries",
+        "category": "virtualenv"
+    },
+    {
+        "command": "pip check",
+        "id": 15,
+        "hint": "Check for broken packages in the active virtual environment",
+        "category": "virtualenv"
     }
-        
+       
 ]
