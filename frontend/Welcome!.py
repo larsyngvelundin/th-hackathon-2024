@@ -105,7 +105,7 @@ def main():
 
                 # Display the data
                 st.subheader("Cards Data")
-                st.dataframe(df)
+                st.dataframe(df, use_container_width=True)
 
 
 if __name__ == "__main__":

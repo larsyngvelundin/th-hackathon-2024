@@ -53,4 +53,4 @@ if cards:
 
     # Display the data
     st.text("")
-    st.dataframe(df)
+    st.dataframe(df, use_container_width=True)
