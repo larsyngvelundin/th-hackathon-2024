@@ -5,50 +5,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice</title>
-    <style>
-        #currentCard {
-            width: 500px;
-            height: 300px;
-            background-color: antiquewhite;
-            box-shadow: 1px;
-        }
-
-        #cardHint {
-            position: relative;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
-    <div id="currentCard">
-        <div id="cardHint"></div>
-        <div id="cardAnswer"></div>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #containerDiv {
+            position: relative;
+            top: 50%;
+            left: 50vw;
+            transform: translate(-25%, -50%);
+            color: white;
+        }
+
+        #currentCard {
+            perspective: 1000px;
+            width: 500px;
+            height: 300px;
+        }
+
+        .card {
+            color: black;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: relative;
+        }
+
+        #cardHint,
+        #cardAnswer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #cardHint {
+            background-color: #ffeead;
+        }
+
+        #cardAnswer {
+            background-color: #96ceb4;
+            transform: rotateY(180deg);
+        }
+
+        #cardAnswer.incorrect {
+            background-color: #ff6969;
+        }
+
+        .flip {
+            transform: rotateY(180deg);
+        }
+
+        .cardSide {
+            text-align: center;
+        }
+
+        #userInput {
+            margin: 50px;
+        }
+    </style>
+    <div id="containerDiv">
+        <div id="currentCard" class="card">
+            <div id="cardHint" class="cardSide"></div>
+            <div id="cardAnswer" class="cardSide"></div>
+        </div>
+        <label for="userInput">Answer:</label>
+        <input type="text" id="userInput" size="40" onen />
+        <div id="resultDiv"></div>
     </div>
-    <label for="userInput">Answer:</label>
-    <input type="text" id="userInput" size="40" onen />
-    <div id="resultDiv"></div>
     <script>
-        // Replace 'http://10.154.246.69:8000' with the actual endpoint you need to fetch from
+        function countMatches(str, re) {
+            return ((str || '').match(re) || []).length
+        }
+        function stringToRegex(str) {
+            // str = stripLinkStuff(str);
+            const digitsPattern = /\<\S+\>/g;
+            const regexString = str.replace(digitsPattern, '\\S+');
+            return new RegExp(regexString, "gi");
+        }
         const url = 'http://10.154.246.69:8000/cards';
+
         let resultDiv = document.getElementById("resultDiv");
         let allCards = [];
         let currentIndex = 0;
         let clearOnEnter = false;
+        cardEl = document.getElementById("currentCard");
+        hintEl = document.getElementById("cardHint");
+        answerEl = document.getElementById("cardAnswer");
         function loadCard() {
-            cardEl = document.getElementById("currentCard");
-            hintEl = document.getElementById("cardHint");
-            answerEl = document.getElementById("cardAnswer");
             currentCard = allCards[currentIndex];
             currentIndex = currentIndex + 1;
             console.log("current card:", currentCard);
             hintEl.innerText = currentCard.hint;
-
+            answerEl.innerText = currentCard.command;
+        }
+        function flipCard() {
+            cardEl.classList.toggle('flip');
+        }
+        function sleep(ms = 0) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
         inputField = document.getElementById("userInput");
+        async function resetCard() {
+
+            flipCard();
+            await sleep(300);
+            loadCard();
+            answerEl.classList.remove("incorrect");
+            clearOnEnter = false;
+            resultDiv.innerHTML = "";
+            inputField.value = "";
+        }
         inputField.addEventListener("keypress", function (event) {
             // If the user presses the "Enter" key on the keyboard
             if (event.key === "Enter") {
@@ -56,19 +132,20 @@
 
                 event.preventDefault();
                 console.log(inputField.value);
-                if (inputField.value == currentCard.command) {
+                let regex = stringToRegex(currentCard.command);
+                let count = countMatches(inputField.value, regex)
+                if (count > 0) {
                     resultDiv.innerHTML = "CORRECT!";
                 }
                 else {
                     resultDiv.innerHTML = "THAT'S NOT CORRECT!";
+                    answerEl.classList.add("incorrect");
                 }
                 if (clearOnEnter) {
-                    loadCard();
-                    clearOnEnter = false;
-                    resultDiv.innerHTML = "";
-                    inputField.value = "";
+                    resetCard();
                 }
                 else {
+                    flipCard();
                     clearOnEnter = true;
                 }
             }
