@@ -56,6 +56,9 @@ pageHtml = """
             background-color: #96ceb4;
             transform: rotateY(180deg);
         }
+        #cardAnswer.incorrect {
+            background-color: #ff6969;
+        }
 
         .flip {
             transform: rotateY(180deg);
@@ -108,6 +111,7 @@ pageHtml = """
             flipCard();
             await sleep(300);
             loadCard();
+            answerEl.classList.remove("incorrect");
             clearOnEnter = false;
             resultDiv.innerHTML = "";
             inputField.value = "";
@@ -124,6 +128,7 @@ pageHtml = """
                 }
                 else {
                     resultDiv.innerHTML = "THAT'S NOT CORRECT!";
+                    answerEl.classList.add("incorrect");
                 }
                 if (clearOnEnter) {
                     resetCard();
@@ -145,7 +150,7 @@ pageHtml = """
         }
         async function getCards() {
             // Use the fetch API to get data from the server
-            allCards = await fetch(url, { mode: 'no-cors'})
+            allCards = await fetch(url)
                 .then(response => {
                     // Check if the request was successful
                     if (!response.ok) {
