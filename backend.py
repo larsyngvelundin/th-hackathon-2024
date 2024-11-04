@@ -7,7 +7,7 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 class Card(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     hint: str = Field(index=True)
-    commnd: str | None = Field(index=True)
+    command: str | None = Field(index=True)
 
 
 sqlite_file_name = "database.db"
@@ -45,7 +45,7 @@ def create_card(card: Card, session: SessionDep) -> Card:
 
 
 @app.get("/cards/")
-def read_cardes(
+def read_cards(
     session: SessionDep,
     offset: int = 0,
     limit: Annotated[int, Query(le=100)] = 100,
